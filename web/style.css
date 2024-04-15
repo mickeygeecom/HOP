@@ -1,0 +1,9 @@
+.question-input {
+    width: 400px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    /* Add any additional styles as needed */
+}
