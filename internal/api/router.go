@@ -3,7 +3,6 @@ package api
 import (
 	"database/sql"
 	"encoding/json"
-	"log"
 	"lootlocker-quiz/internal/db"
 	"net/http"
 	"path/filepath"
@@ -231,8 +230,6 @@ func CreateQuestion(w http.ResponseWriter, r *http.Request) {
 		Option4       string `json:"option4"`
 		CorrectOption int    `json:"correct_option"`
 	}
-
-	log.Printf("Option1: %s", q.Option1)
 
 	if err := json.NewDecoder(r.Body).Decode(&q); err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
