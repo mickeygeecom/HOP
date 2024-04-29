@@ -20,6 +20,11 @@
     position: absolute;
 }
 
+#adminbox {
+    top: 0px;
+    right: 0px;
+}
+
 #quizForm {
     font-weight: bold;
 }
