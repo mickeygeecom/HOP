@@ -177,33 +177,6 @@ func CreateQuestion(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]int64{"question_id": questionID})
 }
 
-// ListQuestions lists all questions associated with the specified quiz
-func ListQuestions(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	quizID := params["quizId"]
-
-	rows, err := db.DB.Query("SELECT id, question_text FROM questions WHERE quiz_id = ?", quizID)
-	if err != nil {
-		http.Error(w, "Server error - unable to find questions for quiz ID "+quizID, http.StatusInternalServerError)
-		return
-	}
-	defer rows.Close()
-
-	var questions []map[string]interface{}
-	for rows.Next() {
-		var id int
-		var questionText string
-		err := rows.Scan(&id, &questionText)
-		if err != nil {
-			http.Error(w, "Server error", http.StatusInternalServerError)
-			return
-		}
-		questions = append(questions, map[string]interface{}{"id": id, "question_text": questionText})
-	}
-
-	json.NewEncoder(w).Encode(questions)
-}
-
 // GetQuestionByID retrieves the details of the specified question
 func GetQuestionByID(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)

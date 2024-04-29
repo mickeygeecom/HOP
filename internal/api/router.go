@@ -40,6 +40,9 @@ func SetupRouter() *mux.Router {
 	userRouter := router.PathPrefix("/api/user").Subrouter()
 	userRouter.Use(ContentTypeMiddleware)
 	userRouter.HandleFunc("/quizzes", userListQuizzes).Methods("GET", "OPTIONS")
+	userRouter.HandleFunc("/quizzes/{id}", userGetQuiz).Methods("GET", "OPTIONS")
+	userRouter.HandleFunc("/quizzes/{quizId}/submit", userSubmitAnswers).Methods("POST", "OPTIONS")
+	userRouter.HandleFunc("/questions/{quizId}/", ListQuestions).Methods("GET")
 
 	// Serve static files
 	staticDir := "/web/" // Directory where static files are located
