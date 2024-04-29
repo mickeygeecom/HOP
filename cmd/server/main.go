@@ -27,7 +27,7 @@ func main() {
 
 	// Start HTTPS server
 	log.Println("Starting HTTPS server on port:", httpsPort)
-	if err := http.ListenAndServeTLS(":"+httpsPort, "./web/ssl/cert.pem", "./web/ssl/key.pem", router); err != nil {
+	if err := http.ListenAndServeTLS(":"+httpsPort, "./web/ssl/fullchain.pem", "./web/ssl/privkey.pem", router); err != nil {
 		log.Fatalf("Failed to start HTTPS server on port %s: %v", httpsPort, err)
 	}
 }
