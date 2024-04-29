@@ -33,6 +33,10 @@ function createQuiz(name, description) {
 
 // Function to list quizzes
 function listQuizzes() {
+    // Change button text to 'Add Question' under questions section
+    const addButton = document.querySelector('#createQuestionForm button[type="submit"]');
+    addButton.textContent = 'Add Question';
+
     fetch('/api/admin/quizzes')
     .then(response => response.json())
     .then(data => {
@@ -137,7 +141,7 @@ function showQuestions(quizId) {
                 item.innerHTML = `
                     <span class="flex-1">${question.question_text}</span>
                     <div class="flex justify-end items-center gap-2">
-                        <button onclick="editQuestion(${quizId}, ${question.id})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Edit</button>
+                        <button onclick="editQuestion(${quizId}, ${question.id})" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded">Edit</button>
                         <button onclick="deleteQuestion(${quizId}, ${question.id})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
                     </div>
                 `;
