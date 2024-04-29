@@ -12,7 +12,7 @@ document.getElementById('createQuizForm').addEventListener('submit', function(ev
 
 // Function to create a quiz
 function createQuiz(name, description) {
-    fetch('https://localhost/quizzes', {
+    fetch('https://localhost/admin/quizzes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function createQuiz(name, description) {
 
 // Function to list quizzes
 function listQuizzes() {
-    fetch('https://localhost/quizzes')
+    fetch('https://localhost/admin/quizzes')
     .then(response => response.json())
     .then(data => {
         const list = document.getElementById('quizList');
@@ -70,7 +70,7 @@ function editQuiz(quizId) {
         alert('Name and description are required');
         return;
     }
-    fetch(`https://localhost/quizzes/${quizId}`, {
+    fetch(`https://localhost/admin/quizzes/${quizId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ function editQuiz(quizId) {
 // Function to delete a quiz
 function deleteQuiz(quizId) {
     if (confirm('Are you sure you want to delete this quiz?')) {
-        fetch(`https://localhost/quizzes/${quizId}`, {
+        fetch(`https://localhost/admin/quizzes/${quizId}`, {
             method: 'DELETE'
         })
         .then(response => {
@@ -118,7 +118,7 @@ function showQuestions(quizId) {
     currentQuizId = quizId;
     console.log("Setting current quiz id to", quizId);
 
-    fetch(`https://localhost/quizzes/${quizId}/questions`)
+    fetch(`https://localhost/admin/quizzes/${quizId}/questions`)
     .then(response => response.json())
     .then(data => {
         const questionList = document.getElementById('questionList');
@@ -201,7 +201,7 @@ document.getElementById('createQuestionForm').addEventListener('submit', functio
 
 // Function to create a question for a quiz
 function createQuestion(quizId, questionData) {
-    fetch(`https://localhost/quizzes/${quizId}/questions`, {
+    fetch(`https://localhost/admin/quizzes/${quizId}/questions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ function createQuestion(quizId, questionData) {
 
 // Function to edit a question
 function editQuestion(quizId, questionId) {
-    fetch(`https://localhost/questions/${questionId}`)
+    fetch(`https://localhost/admin/questions/${questionId}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to fetch question data');
@@ -264,7 +264,7 @@ function editQuestion(quizId, questionId) {
 // Function to delete a question
 function deleteQuestion(quizId, questionId) {
     if (confirm('Are you sure you want to delete this question?')) {
-        fetch(`https://localhost/questions/${questionId}`, {
+        fetch(`https://localhost/admin/questions/${questionId}`, {
             method: 'DELETE'
         })
         .then(response => {

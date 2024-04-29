@@ -2,90 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz Manager</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Quiz App</title>
+    <!-- Add any necessary CSS files or stylesheets here -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100 p-5">
-    <h1 class="text-xl font-bold text-center mb-4">Quiz Management System</h1>
-    
-    <div class="flex">
-        <!-- Sidebar for Navigation -->
-        <div class="w-1/4 bg-white shadow-md h-screen">
-            <ul class="space-y-2 text-sm">
-                <li><button onclick="" class="block w-full text-left p-3 hover:bg-gray-200">Quizzes</button></li>
-            </ul>
-        </div>
+<body>
+    <header>
+        <h1>Welcome to the Quiz App</h1>
+        <!-- You can add a navigation menu here if needed -->
+    </header>
+    <main>
+        <section id="quizList">
+            <!-- Quiz items will be dynamically added here -->
+        </section>
+    </main>
+    <footer>
+        <!-- Add footer content here if needed -->
+    </footer>
 
-        <!-- Main Content Area -->
-        <div class="flex-1 p-5">
-            <div id="quizSection">
-                <h2 class="text-lg font-semibold">Create Quiz</h2>
-                <form id="createQuizForm" class="mb-4">
-                    <input type="text" id="quizName" placeholder="Enter quiz name" required class="p-2 border border-gray-300 rounded">
-                    <input type="text" id="quizDescription" placeholder="Enter quiz description" required class="p-2 border border-gray-300 rounded">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Quiz</button>
-                </form>
-                <div>
-                    <h2 class="text-lg font-semibold">List of Quizzes</h2>
-                    <button onclick="listQuizzes()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Refresh List</button>
-                    <ul id="quizList" class="list-disc pl-5 mt-3"></ul>
-                </div>
-            </div>
-
-            <div id="questionSection" style="display: none;">
-                <button onclick="goBackToQuizList()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to Quizzes</button>
-                <h2 class="text-lg font-semibold mt-4">Questions</h2>
-                <form id="createQuestionForm" class="mb-4">
-                    <input type="hidden" id="quizId" name="quizId">
-                    Question
-                    <input type="text" id="questionText" placeholder="Enter question text" required class="question-input">
-
-                    <div style="display: flex; flex-direction: column; gap: 3px;">
-                        <div>
-                            Option 1:
-                            <input type="text" id="option1" placeholder="Option 1" required class="p-2 border border-gray-300 rounded">
-                        </div>
-                        <div>
-                            Option 2:
-                            <input type="text" id="option2" placeholder="Option 2" required class="p-2 border border-gray-300 rounded">
-                        </div>
-                        <div>
-                            Option 3:
-                            <input type="text" id="option3" placeholder="Option 3" required class="p-2 border border-gray-300 rounded">
-                        </div>
-                        <div>
-                            Option 4:
-                            <input type="text" id="option4" placeholder="Option 4" required class="p-2 border border-gray-300 rounded">
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    Please select which option is correct:
-                    <div style="display: flex; gap: 10px;">
-                        <label class="block">
-                            <input type="radio" name="correctOption" value="1" required> Option 1
-                        </label>
-                        <label class="block">
-                            <input type="radio" name="correctOption" value="2" required> Option 2
-                        </label>
-                        <label class="block">
-                            <input type="radio" name="correctOption" value="3" required> Option 3
-                        </label>
-                        <label class="block">
-                            <input type="radio" name="correctOption" value="4" required> Option 4
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Question</button>
-                </form>
-                <ul id="questionList" class="list-disc pl-5 mt-3"></ul>
-            </div>
-            
-        </div>
-    </div>
-
+    <!-- Add any necessary JavaScript files or scripts here -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -25,19 +25,25 @@ func SetupRouter() *mux.Router {
 	apiRouter := router.PathPrefix("/").Subrouter()
 	apiRouter.Use(ContentTypeMiddleware)
 
-	// CRUD for quizzes, notice OPTIONS is present to work in browser frontend
-	apiRouter.HandleFunc("/quizzes", listQuizzes).Methods("GET", "OPTIONS")
-	apiRouter.HandleFunc("/quizzes", createQuiz).Methods("POST")
-	apiRouter.HandleFunc("/quizzes/{id}", getQuiz).Methods("GET", "OPTIONS")
-	apiRouter.HandleFunc("/quizzes/{id}", updateQuiz).Methods("PUT", "OPTIONS")
-	apiRouter.HandleFunc("/quizzes/{id}", deleteQuiz).Methods("DELETE", "OPTIONS")
+	// ## Admin endpoints ##
+	adminRouter := router.PathPrefix("/admin").Subrouter()
+	adminRouter.Use(ContentTypeMiddleware)
+	// Admin - Quizzes
+	adminRouter.HandleFunc("/quizzes", listQuizzes).Methods("GET", "OPTIONS")
+	adminRouter.HandleFunc("/quizzes", createQuiz).Methods("POST")
+	adminRouter.HandleFunc("/quizzes/{id}", getQuiz).Methods("GET", "OPTIONS")
+	adminRouter.HandleFunc("/quizzes/{id}", updateQuiz).Methods("PUT", "OPTIONS")
+	adminRouter.HandleFunc("/quizzes/{id}", deleteQuiz).Methods("DELETE", "OPTIONS")
+	// Admin - Questions
+	adminRouter.HandleFunc("/quizzes/{quizId}/questions", CreateQuestion).Methods("POST")
+	adminRouter.HandleFunc("/questions/{questionId}", GetQuestionByID).Methods("GET")
+	adminRouter.HandleFunc("/quizzes/{quizId}/questions", ListQuestions).Methods("GET")
+	adminRouter.HandleFunc("/questions/{questionId}", UpdateQuestion).Methods("PUT")
+	adminRouter.HandleFunc("/questions/{questionId}", DeleteQuestion).Methods("DELETE")
 
-	// CRUD for questions
-	apiRouter.HandleFunc("/quizzes/{quizId}/questions", CreateQuestion).Methods("POST")
-	apiRouter.HandleFunc("/questions/{questionId}", GetQuestionByID).Methods("GET")
-	apiRouter.HandleFunc("/quizzes/{quizId}/questions", ListQuestions).Methods("GET")
-	apiRouter.HandleFunc("/questions/{questionId}", UpdateQuestion).Methods("PUT")
-	apiRouter.HandleFunc("/questions/{questionId}", DeleteQuestion).Methods("DELETE")
+	// ## Enduser endpoints
+	userRouter := router.PathPrefix("/user").Subrouter()
+	userRouter.Use(ContentTypeMiddleware)
 
 	// Serve static files
 	staticDir := "/web/" // Directory where static files are located
