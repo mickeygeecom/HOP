@@ -26,12 +26,17 @@ function displayQuizzes(quizzes) {
 
         const title = document.createElement('h2');
         title.textContent = quiz.name; // Display quiz name instead of title
+        title.style.fontWeight = 'bold'; // Set the font weight of the title
 
         const description = document.createElement('p');
         description.textContent = quiz.description;
 
         const startButton = document.createElement('button');
         startButton.textContent = 'Start Quiz';
+        startButton.style.fontWeight = 'bold'; // Set the font weight of the title
+        startButton.style.backgroundColor = '#1dc26a'; // Set the background color of the button
+        startButton.style.borderRadius = '0.5rem'; // Set the border radius of the button
+        startButton.style.padding = '1rem'; // Set the margin of the button
         startButton.addEventListener('click', () => showQuizDetails(quiz.id));
 
         // Append elements to quizItem
@@ -64,10 +69,11 @@ function fetchQuizQuestions(quizId) {
 }
 
 // Function to display quiz details and questions
+// Function to display quiz details and questions
 async function showQuizDetails(quizId) {
     try {
         const quiz = await fetchQuizDetails(quizId);
-        console.log('Quiz details:', quiz)
+        console.log('Quiz details:', quiz);
 
         // Update quiz details section with quiz title and description
         const quizTitle = document.getElementById('quizTitle');
@@ -81,42 +87,75 @@ async function showQuizDetails(quizId) {
 
         const quizQuestions = await fetchQuizQuestions(quizId);
         console.log('Quiz questions:', quizQuestions); // Log the value of quizQuestions
-        console.log('Type of quizQuestions:', typeof quizQuestions); // Log the type of quizQuestions
 
-        // Check if quizQuestions is an array before calling forEach
-        if (Array.isArray(quizQuestions) && quizQuestions.length > 0) {
-            quizQuestions.forEach(question => {
-                // Your existing code to create form elements for each question
-            });
-        } else {
-            console.error('No questions found in the quiz');
-            alert('Failed to load quiz details. Please try again later.');
-            return;
-        }
+        if (quizQuestions !== null && quizQuestions.length > 0) {
+            let currentQuestionIndex = 0; // Index of the current question being displayed
 
+            const displayNextQuestion = () => {
+                // Remove the current question from the form
+                quizForm.innerHTML = '';
 
-        // Create form elements for each question in the quiz if questions array exists
-        console.log(JSON.stringify(quizQuestions))
-        if (quizQuestions.length > 0) {
-            quizQuestions.forEach(question => {
+                const question = quizQuestions[currentQuestionIndex];
+
                 const questionLabel = document.createElement('label');
                 questionLabel.textContent = question.question_text;
                 quizForm.appendChild(questionLabel);
 
-                question.options.forEach((option, index) => {
+                // Create a group for radio buttons
+                const optionGroup = document.createElement('div');
+                optionGroup.classList.add('option-group');
+                
+
+                // Iterate over each option field and add radio buttons for them
+                for (let i = 1; i <= 4; i++) {
+                    const option = question[`option${i}`]; // Access each option field dynamically
                     const optionLabel = document.createElement('label');
                     const optionInput = document.createElement('input');
+                    // Inside the loop that creates radio buttons
+                    optionInput.style.display = 'none'; // Hide the default radio button
+                    optionLabel.style.backgroundColor = '#92b0e8'; // Set the background color of the button
+        
+                    optionLabel.style.display = 'inline-block'; // Display the label as a block element
+                    optionLabel.style.margin = '3em'; // Add margin to the label
+                    optionLabel.style.padding = '1em'; // Add padding to the label
+                    optionLabel.style.marginBottom = '0.5rem'; // Add margin bottom to the label
+                    optionLabel.style.border = '2px solid #000'; // Add border to the label
+                    optionLabel.style.borderRadius = '0.5rem'; // Add border radius to the label
+                    optionLabel.style.cursor = 'pointer'; // Add cursor pointer to the label
+                    optionLabel.style.transition = 'all 0.3s ease'; // Add transition effect to the label
+
                     optionInput.type = 'radio';
                     optionInput.name = `question${question.id}`;
-                    optionInput.value = index + 1;
+                    optionInput.value = i;
+                    optionInput.addEventListener('change', () => {
+                        // Store the selected option in the question object
+                        question.selectedOption = i;
+
+                        // Move to the next question if not the last one
+                        if (currentQuestionIndex < quizQuestions.length - 1) {
+                            currentQuestionIndex++;
+                            displayNextQuestion();
+                        } else {
+                            // Notify the user that the quiz is done
+                            alert('Congratulations! You have completed the quiz.');
+                            // Optionally, you can hide the quiz section
+                            document.getElementById('quizDetails').style.display = 'none';
+                        }
+                    });
                     optionLabel.appendChild(optionInput);
                     optionLabel.appendChild(document.createTextNode(option));
-                    quizForm.appendChild(optionLabel);
-                });
-            });
+                    optionGroup.appendChild(optionLabel);
+                }
+
+                // Append the option group to the form
+                quizForm.appendChild(optionGroup);
+            };
+
+            // Display the first question
+            displayNextQuestion();
+
         } else {
-            console.error('No questions found in the quiz');
-            alert('Failed to load quiz details. Please try again later.');
+            alert('No questions is present for this quiz. It might be new?');
             return;
         }
 
@@ -124,40 +163,10 @@ async function showQuizDetails(quizId) {
         document.getElementById('quizDetails').style.display = 'block';
     } catch (error) {
         console.error(error.message);
-        alert('Failed to load quiz details. Please try again later.');
+        //alert('Failed to load quiz details. Please try again later.');
     }
-
-    // Create a submit button for the quiz
-    const submitButton = document.createElement('button');
-    submitButton.textContent = 'Submit Quiz';
-    submitButton.addEventListener('click', () => {
-        const answers = [];
-
-        // Collect selected answers from the form
-        quiz.questions.forEach(question => {
-            const selectedAnswer = document.querySelector(`input[name="question${question.id}"]:checked`);
-            if (selectedAnswer) {
-                answers.push({
-                    question_id: question.id,
-                    answer: parseInt(selectedAnswer.value)
-                });
-            }
-        });
-
-        // Submit the answers
-        if (answers.length > 0) {
-            submitAnswers(quizId, answers);
-        } else {
-            alert('Please answer all questions before submitting the quiz');
-        }
-    });
-
-    // Append submit button to quizForm
-    quizForm.appendChild(submitButton);
-
-    // Display the quiz details section
-    document.getElementById('quizDetails').style.display = 'block';
 }
+
 
 // Call fetchQuizzes function when the page loads
 window.onload = fetchQuizzes;

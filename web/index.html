@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the Quiz App</title>
-    <!-- Add any necessary CSS files or stylesheets here -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Add Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Link to your existing style.css file -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-gray-100">
     <header>
-        <h1>Welcome to the Quiz App</h1>
+        <h1 class="text-3xl font-bold text-center py-8">Welcome to the Quiz App</h1>
         <!-- You can add a navigation menu here if needed -->
     </header>
-    <main>
-        <section id="quizList">
-            <!-- Quiz items will be dynamically added here -->
-        </section>
-        <section id="quizDetails" style="display: none;">
-            <h2 id="quizTitle"></h2>
-            <p id="quizDescription"></p>
-            <form id="quizForm">
+    <main class="flex">
+        <nav class="bg-gray-200 w-1/4 h-screen overflow-y-auto p-4">
+            <h2 class="text-xl font-semibold mb-4">Quiz Selection</h2>
+            <section id="quizList" class="space-y-4">
+                <!-- Quiz items will be dynamically added here -->
+            </section>
+        </nav>
+        <section id="quizDetails" class="w-3/4 p-8">
+            <h2 id="quizTitle" class="text-2xl font-semibold mb-4"></h2>
+            <p id="quizDescription" class="mb-8"></p>
+            <form id="quizForm" class="space-y-4">
                 <!-- Quiz questions will be dynamically added here -->
-                <button type="submit">Submit Answers</button>
+                <!-- <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Submit Answers</button> -->
             </form>
         </section>
     </main>
