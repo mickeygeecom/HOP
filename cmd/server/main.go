@@ -12,10 +12,10 @@ var httpPort = "80" // Use non-privileged ports for development
 var httpsPort = "443"
 
 func main() {
+	log.Println("======= LootLocker Quiz API server =======")
+
 	db.InitDB()
 	router := api.SetupRouter()
-
-	log.Println("======= LootLocker Quiz API server =======")
 
 	// Start HTTP server in a Go routine so that it runs concurrently
 	go func() {

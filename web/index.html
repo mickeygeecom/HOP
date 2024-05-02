@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the Quiz App</title>
-    <!-- Add Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Link to your existing style.css file -->
+    <title>LootLocker - Quiz App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
@@ -14,12 +12,23 @@
         <div align="right" style="margin-top: 1em; margin-right: 1em;">
             <nav class="text-xs font-bold object-right"><a href="/admin/"><img src="/images/lock.png">Admin</a></nav>
         </div>
-            <h1 class="text-3xl font-bold text-center py-8">Welcome to the Quiz App</h1>
-        <!-- You can add a navigation menu here if needed -->
+            <a href="/"><img src="/images/lootlocker_logo.png" class="mx-auto" alt="Quiz App Logo" style="width: 100px; height: 100px; display: block; margin-left: auto; margin-right: auto; width: 18%;"></a>
+            <h1 class="text-3xl font-bold text-center">Quiz App</h1>
+        <!-- Navmenu can go here -->
     </header>
     <main class="flex">
         <nav class="bg-gray-200 w-1/4 h-screen overflow-y-auto p-4">
-            <h2 class="text-xl font-semibold mb-4">Quiz Selection</h2>
+
+            <section id="joinCode" class="mb-4">
+                <h2 class="text-xl font-semibold mb-4">Quick Join</h2>
+                <p>Enter the join code provided by your host</p>
+                <input type="text" id="joinCodeInput" placeholder="6 digits">
+                <button id="joinQuizButton">Join Quiz</button>
+            </section>
+
+            <hr class="my-4">
+
+            <h2 class="text-xl font-semibold mb-4">Available Quizzes</h2>
             <section id="quizList" class="space-y-4">
                 <!-- Quiz items will be dynamically added here -->
             </section>
@@ -29,15 +38,18 @@
             <p id="quizDescription" class="mb-8"></p>
             <form id="quizForm" class="space-y-4">
                 <!-- Quiz questions will be dynamically added here -->
-                <!-- <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Submit Answers</button> -->
             </form>
+            <div id="score" class="text-xl font-semibold mt-4"></div> <!-- Score display section -->
         </section>
     </main>
     <footer>
-        <!-- Add footer content here if needed -->
     </footer>
 
-    <!-- Add any necessary JavaScript files or scripts here -->
-    <script src="script.js"></script>
+    <script type="module" src="js/fetchQuizzes.js"></script>
+    <script type="module" src="js/displayQuizzes.js"></script>
+    <script type="module" src="js/quizDetails.js"></script>
+    <script type="module" src="js/displayScore.js"></script>
+    <script type="module" src="js/joinQuiz.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

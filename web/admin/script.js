@@ -263,6 +263,44 @@ function editQuestion(quizId, questionId) {
     });
 }
 
+function updateQuestion(quizId, questionId) {
+    // Get the updated question data from the form
+    const updatedQuestion = {
+        question_text: document.getElementById('questionText').value,
+        option1: document.getElementById('option1').value,
+        option2: document.getElementById('option2').value,
+        option3: document.getElementById('option3').value,
+        option4: document.getElementById('option4').value,
+        correct_option: parseInt(document.querySelector('input[name="correctOption"]:checked').value)
+    };
+
+    // Send the updated question data to the backend to update the question
+    fetch(`/api/admin/questions/${questionId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedQuestion)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to update question');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Handle successful update (e.g., show success message, navigate back to quiz section, etc.)
+        console.log('Question updated successfully:', data);
+        // Update the question list after updating
+        showQuestions(quizId);
+    })
+    .catch(error => {
+        console.error('Error updating question:', error);
+        alert('Failed to update question');
+    });
+}
+
+
 
 
 // Function to delete a question
@@ -273,7 +311,7 @@ function deleteQuestion(quizId, questionId) {
         })
         .then(response => {
             if (response.ok) {
-                alert('Question deleted successfully!');
+                //alert('Question deleted successfully!');
                 showQuestions(quizId);
             } else {
                 alert('Failed to delete question');

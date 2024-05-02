@@ -23,4 +23,6 @@ func InitDB() {
 	}
 
 	log.Println("Successfully connected to the database.")
+
+	UpdateQuizJoinCodes()
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz Manager</title>
+    <title>LootLocker - Quiz Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,6 +10,7 @@
     <div align="right" >
         <nav class="text-xs font-bold object-right"><a href="/"><img src="/images/frontend.png">Frontend</a></nav>
     </div>
+    <a href="/admin/"><img src="/images/lootlocker_logo.png" class="mx-auto" alt="Quiz App Logo" style="width: 100px; height: 100px; display: block; margin-left: auto; margin-right: auto; width: 18%;"></a>
     <h1 class="text-xl font-bold text-center mb-4">Quiz Management System</h1>
     
     <div class="flex">
@@ -23,10 +24,10 @@
         <!-- Main Content Area -->
         <div class="flex-1 p-5">
             <div id="quizSection">
-                <h2 class="text-lg font-semibold">Create Quiz</h2>
+                <h2 class="text-lg font-semibold">Create New Quiz</h2>
                 <form id="createQuizForm" class="mb-4">
-                    <input type="text" id="quizName" placeholder="Enter quiz name" required class="p-2 border border-gray-300 rounded">
-                    <input type="text" id="quizDescription" placeholder="Enter quiz description" required class="p-2 border border-gray-300 rounded">
+                    <input type="text" id="quizName" placeholder="Enter quiz name" required class="p-2 border border-gray-500 rounded">
+                    <input type="text" id="quizDescription" placeholder="Enter quiz description" required class="p-2 border border-gray-500 rounded">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Quiz</button>
                 </form>
                 <div>
@@ -42,24 +43,24 @@
                 <form id="createQuestionForm" class="mb-4">
                     <input type="hidden" id="quizId" name="quizId">
                     Question
-                    <input type="text" id="questionText" placeholder="Enter question text" required class="question-input">
+                    <input type="text" id="questionText" placeholder="Enter the question here" required class="p-2 border border-gray-500 rounded question-input">
 
                     <div style="display: flex; flex-direction: column; gap: 3px;">
                         <div>
                             Option 1:
-                            <input type="text" id="option1" placeholder="Answer A" required class="p-2 border border-gray-300 rounded">
+                            <input type="text" id="option1" placeholder="Answer A" required class="p-2 border border-gray-500 rounded">
                         </div>
                         <div>
                             Option 2:
-                            <input type="text" id="option2" placeholder="Answer B" required class="p-2 border border-gray-300 rounded">
+                            <input type="text" id="option2" placeholder="Answer B" required class="p-2 border border-gray-500 rounded">
                         </div>
                         <div>
                             Option 3:
-                            <input type="text" id="option3" placeholder="Answer C" required class="p-2 border border-gray-300 rounded">
+                            <input type="text" id="option3" placeholder="Answer C" required class="p-2 border border-gray-500 rounded">
                         </div>
                         <div>
                             Option 4:
-                            <input type="text" id="option4" placeholder="Answer D" required class="p-2 border border-gray-300 rounded">
+                            <input type="text" id="option4" placeholder="Answer D" required class="p-2 border border-gray-500 rounded">
                         </div>
                     </div>
                     

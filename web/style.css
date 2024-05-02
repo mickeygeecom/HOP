@@ -1,24 +1,24 @@
-/* style.css */
 
-/* Custom CSS for radio button styling */
-.option-label {
+.option-group {
+    margin-top: 1rem;
+}
+  
+.option-group label {
     display: block;
-    padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border: 2px solid #e2e8f0;
+    padding: 0.5rem;
+    cursor: pointer;
+    border: 2px solid #40be7063;
+    color: #1e6b3c;
+    background-color: #cacaca73;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
-
-.option-label:hover {
-    background-color: #edf2f7;
+  
+.option-group input[type="radio"] {
+    margin-right: 0.5rem;
 }
-
-.option-input {
-    opacity: 0;
-    position: absolute;
-}
+  
 
 #adminbox {
     top: 0px;
@@ -27,4 +27,15 @@
 
 #quizForm {
     font-weight: bold;
+}
+
+#joinCodeInput {
+    padding: 0.5rem;
+    color: #000000;
+    background-color: #40be7013;
+}
+#joinQuizButton {
+    padding: 0.5rem;
+    color: #000000;
+    background-color: #40be7063;
 }

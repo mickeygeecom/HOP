@@ -22,15 +22,24 @@ func createQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result, err := db.DB.Exec("INSERT INTO quiz (name, description) VALUES (?, ?)", q.Name, q.Description)
+	// Generate a new join code
+	joinCode := db.GenerateJoinCode()
+
+	result, err := db.DB.Exec("INSERT INTO quiz (name, description, join_code) VALUES (?, ?, ?)", q.Name, q.Description, joinCode)
 	if err != nil {
-		http.Error(w, "Server error - database error", http.StatusInternalServerError)
+		http.Error(w, "Server error - database error: could not insert entry", http.StatusInternalServerError)
 		return
 	}
 	id, err := result.LastInsertId()
 	quizID := int(id) // for api message, int64 to int
 	if err != nil {
-		http.Error(w, "Server error - database error", http.StatusInternalServerError)
+		http.Error(w, "Server error - database error, could not create a new id entry", http.StatusInternalServerError)
+		return
+	}
+
+	// Update join code for the newly created quiz
+	if err := db.UpdateSingleQuizJoinCode(quizID); err != nil {
+		http.Error(w, "Server error - failed to generate join code", http.StatusInternalServerError)
 		return
 	}
 
@@ -208,18 +217,19 @@ func UpdateQuestion(w http.ResponseWriter, r *http.Request) {
 	questionID := params["questionId"]
 
 	var q struct {
-		QuestionText string `json:"question_text"`
-		Option1      string `json:"option1"`
-		Option2      string `json:"option2"`
-		Option3      string `json:"option3"`
-		Option4      string `json:"option4"`
+		QuestionText  string `json:"question_text"`
+		Option1       string `json:"option1"`
+		Option2       string `json:"option2"`
+		Option3       string `json:"option3"`
+		Option4       string `json:"option4"`
+		CorrectOption int    `json:"correct_option"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&q); err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	_, err := db.DB.Exec("UPDATE questions SET question_text = ?, option1 = ?, option2 = ?, option3 = ?, option4 = ? WHERE id = ?", q.QuestionText, q.Option1, q.Option2, q.Option3, q.Option4, questionID)
+	_, err := db.DB.Exec("UPDATE questions SET question_text = ?, option1 = ?, option2 = ?, option3 = ?, option4 = ?, correct_option = ? WHERE id = ?", q.QuestionText, q.Option1, q.Option2, q.Option3, q.Option4, q.CorrectOption, questionID)
 	if err != nil {
 		http.Error(w, "Server error - unable to update question", http.StatusInternalServerError)
 		return

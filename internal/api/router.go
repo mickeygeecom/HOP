@@ -1,9 +1,12 @@
 package api
 
 import (
+	"encoding/json"
 	"net/http"
 	"path/filepath"
 	"strings"
+
+	"lootlocker-quiz/internal/db"
 
 	"github.com/gorilla/mux"
 )
@@ -41,12 +44,38 @@ func SetupRouter() *mux.Router {
 	userRouter.Use(ContentTypeMiddleware)
 	userRouter.HandleFunc("/quizzes", userListQuizzes).Methods("GET", "OPTIONS")
 	userRouter.HandleFunc("/quizzes/{id}", userGetQuiz).Methods("GET", "OPTIONS")
-	userRouter.HandleFunc("/quizzes/{quizId}/submit", userSubmitAnswers).Methods("POST", "OPTIONS")
 	userRouter.HandleFunc("/questions/{quizId}/", ListQuestions).Methods("GET")
+	userRouter.HandleFunc("/quizzes/{quizId}/submit", userSubmitAnswers).Methods("POST", "OPTIONS")
 
 	// Serve static files
 	staticDir := "/web/" // Directory where static files are located
-	router.PathPrefix("/").Handler(ServeStatic(filepath.Join(".", staticDir)))
+	router.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Check if the request path starts with "/code/"
+		if strings.HasPrefix(r.URL.Path, "/code/") {
+			// Extract the join code from the URL path
+			joinCode := strings.TrimPrefix(r.URL.Path, "/code/")
+
+			// Query the database to find the corresponding quiz ID based on the join code
+			quizID, err := db.GetQuizIDFromJoinCode(joinCode)
+			if err != nil {
+				http.Error(w, "No quiz was found with that join code", http.StatusNotFound)
+				return
+			}
+
+			// Send the quiz ID as JSON response
+			json.NewEncoder(w).Encode(struct {
+				QuizID string `json:"quiz_id"`
+			}{
+				QuizID: quizID,
+			})
+
+			// Return to avoid serving static files
+			return
+		}
+
+		// Serve other static files
+		ServeStatic(filepath.Join(".", staticDir)).ServeHTTP(w, r)
+	})
 
 	return router
 }
