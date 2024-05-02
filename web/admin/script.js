@@ -135,11 +135,13 @@ function showQuestions(quizId) {
             questionList.appendChild(noQuestionsMessage);
         } else {
             // Render questions if available
+            let i = 0;
             data.forEach(question => {
+                i++;
                 const item = document.createElement('li');
                 item.className = 'flex justify-between items-center mb-4';
                 item.innerHTML = `
-                    <span class="flex-1">${question.question_text}</span>
+                    <span class="flex-1">${i}: ${question.question_text}</span>
                     <div class="flex justify-end items-center gap-2">
                         <button onclick="editQuestion(${quizId}, ${question.id})" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded">Edit</button>
                         <button onclick="deleteQuestion(${quizId}, ${question.id})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
