@@ -101,7 +101,6 @@ func UpdateQuizJoinCodes() error {
 		return fmt.Errorf("error iterating over rows: %v", err)
 	}
 
-	log.Println("Join codes updated successfully for all quizzes")
 	return nil
 }
 
