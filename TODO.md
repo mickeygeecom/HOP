@@ -1,8 +1,13 @@
 # TODO
 
-# Bugs
-- When editing/updating a question it creates a new one: might be because the update questions form is called "createQuestionForm", need to investigate further
+## Bugs
 
-# Features
+[Low]
+- Correct options should not be send directly to the client prior to submitting an answer, this opens the opportunity for cheats
+
+
+## Features
+- Scheduele quizzes, differentiate persistant quizzes and quizzes with a 'time of life' (period)
+- Log/save how players are doing, but this would need some sort of player identifier
 - Access Control, f.eg. "keys" or "tokens" in headers in the backend? when using accessing the management frontend
     -> Splitting up endpoints which require "auth", and which that does not.
