@@ -3,16 +3,26 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"lootlocker-quiz/internal/api"
 	"lootlocker-quiz/internal/db"
-)
 
-var httpPort = "80" // Use non-privileged ports for development
-var httpsPort = "443"
+	"github.com/joho/godotenv"
+)
 
 func main() {
 	log.Println("======= LootLocker Quiz API server =======")
+
+	// Load environment variables from .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	// Get environment variables
+	httpPort := os.Getenv("HTTP_PORT")
+	httpsPort := os.Getenv("HTTPS_PORT")
 
 	db.InitDB()
 	router := api.SetupRouter()
