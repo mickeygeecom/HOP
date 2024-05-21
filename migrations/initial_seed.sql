@@ -70,15 +70,16 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `join_code` (`join_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table quiz.quiz: ~5 rows (approximately)
+-- Dumping data for table quiz.quiz: ~6 rows (approximately)
 INSERT INTO `quiz` (`id`, `name`, `description`, `join_code`, `created_at`) VALUES
 	(1, 'LootLocker', 'A LootLocker test quiz containing weird a funny questions', 'PY2SW8', '2024-04-15 09:52:06'),
 	(13, '🇩🇰', 'All the daninsh Q\'s', 'BHD0NZ', '2024-04-29 14:07:19'),
 	(15, 'Science Quiz', 'Test your knowledge about science', 'RODQ7L', '2024-04-30 08:00:00'),
 	(16, 'History Quiz', 'Explore historical events and figures', 'J9RX2V', '2024-04-30 09:00:00'),
-	(18, 'Empty Quiz', 'For testing purpose', '9WV0UO', '2024-05-02 18:48:39');
+	(18, 'Empty Quiz', 'For testing purpose', '9WV0UO', '2024-05-02 18:48:39'),
+	(26, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'O8EBZ5', '2024-05-21 13:39:50');
 
 -- Dumping structure for table quiz.quiz_sessions
 CREATE TABLE IF NOT EXISTS `quiz_sessions` (
