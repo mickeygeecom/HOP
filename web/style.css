@@ -49,6 +49,7 @@
 
 #joinCodeInput {
     padding: 0.5rem;
+    min-width: 80%;
     color: #ffffff;
     background-color: #1a3127;
     border-radius: 0.5rem;
