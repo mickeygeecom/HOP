@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if a session exists
     if (sessionStorage.getItem("username")) {
         userGreeting.innerHTML = "Welcome back, <b>" + sessionStorage.getItem("username") + "</b>😍";
+        alert("Welcome back " + sessionStorage.getItem("username") + "! 😍");
         userForm.style.display = "none";
     }
 
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Check if username is provided
         if (username !== "") {
             sessionStorage.setItem("username", username);
+            alert("Welcome " + username + "! 😍 Your results will now be saved along with your name");
             userGreeting.innerHTML = "Welcome back, <b>" + username + "</b>😍";
             userForm.style.display = "none";
         }
