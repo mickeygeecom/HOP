@@ -13,11 +13,14 @@ export async function displayQuizzes(quizzes) {
         quizItem.classList.add('quiz-item');
 
         const title = document.createElement('h2');
-        title.textContent = quiz.name; // Display quiz name instead of title
-        title.style.fontWeight = 'bold'; // Set the font weight of the title
+        const truncatedTitle = quiz.name.length > 50 ? quiz.name.substring(0, 50) + '...' : quiz.name
+        title.textContent = truncatedTitle
+        title.style.fontWeight = 'bold'
 
-        const description = document.createElement('p');
-        description.textContent = quiz.description;
+        const description = document.createElement('p')
+        const truncatedDescription = quiz.description.length > 70 ? quiz.description.substring(0, 70) + '...' : quiz.description
+        description.textContent = truncatedDescription
+
 
         // Automatically start the quiz when the user clicks on the quiz name
         quizItem.addEventListener('click', async () => {
