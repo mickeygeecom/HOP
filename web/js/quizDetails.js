@@ -40,7 +40,7 @@ export async function showQuizDetails(quiz_id) {
 
     } catch (error) {
         console.error(error.message);
-        alert('Failed to load quiz details. Please try again later.');
+        alert('Failed to load quiz details. Please try again later.', 'error');
     }
 }
 
@@ -129,7 +129,7 @@ async function displayQuizDetails(quizId) {
             displayNextQuestion();
 
         } else {
-            alert('No questions are present for this quiz. It might be new?');
+            alert('No questions are present for this quiz. It might be new?', 'error');
             return;
         }
 
@@ -137,6 +137,6 @@ async function displayQuizDetails(quizId) {
         document.getElementById('quizDetails').style.display = 'block';
     } catch (error) {
         console.error(error.message);
-        alert('Failed to load quiz details. Please try again later.');
+        alert('Failed to load quiz details. Please try again later.', 'error');
     }
 }

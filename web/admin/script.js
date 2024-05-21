@@ -27,7 +27,7 @@ function createQuiz(name, description) {
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Failed to create quiz');
+        alert('Failed to create quiz', 'error');
     });
 }
 
@@ -61,7 +61,7 @@ function listQuizzes() {
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Failed to fetch quizzes');
+        alert('Failed to fetch quizzes', 'error');
     });
 }
 listQuizzes();  // List quizzes when the page loads
@@ -71,7 +71,7 @@ function editQuiz(quizId) {
     const newName = prompt('Enter new name for the quiz:');
     const newDescription = prompt('Enter new description for the quiz:');
     if (!newName || !newDescription) {
-        alert('Name and description are required');
+        alert('Name and description are required', 'error');
         return;
     }
     fetch(`/api/admin/quizzes/${quizId}`, {
@@ -85,12 +85,12 @@ function editQuiz(quizId) {
         if (response.ok) {
             listQuizzes();
         } else {
-            alert('Failed to update quiz');
+            alert('Failed to update quiz', 'error');
         }
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Error updating quiz');
+        alert('Error updating quiz', 'error');
     });
 }
 
@@ -105,12 +105,12 @@ function deleteQuiz(quizId) {
                 alert('Quiz deleted successfully!');
                 listQuizzes();
             } else {
-                alert('Failed to delete quiz');
+                alert('Failed to delete quiz', 'error');
             }
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('Error deleting quiz');
+            alert('Error deleting quiz', 'error');
         });
     }
 }
@@ -157,7 +157,7 @@ function showQuestions(quizId) {
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Failed to fetch questions');
+        alert('Failed to fetch questions', 'error');
     });
 }
 
@@ -187,7 +187,7 @@ document.getElementById('createQuestionForm').addEventListener('submit', functio
 
     // Validate that at least one option is selected
     if (!quizId || !questionText || !option1 || !option2 || !option3 || !option4 || !correctOption) {
-        alert('All fields are required');
+        alert('All fields are required', 'error');
         return;
     }
 
@@ -222,7 +222,7 @@ function createQuestion(quizId, questionData) {
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Failed to create question');
+        alert('Failed to create question', 'error');
     });
 }
 
@@ -261,7 +261,7 @@ function editQuestion(quizId, questionId) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to fetch question data');
+        alert('Failed to fetch question data', 'error');
     });
 }
 
@@ -298,7 +298,7 @@ function updateQuestion(quizId, questionId) {
     })
     .catch(error => {
         console.error('Error updating question:', error);
-        alert('Failed to update question');
+        alert('Failed to update question', 'error');
     });
 }
 
@@ -316,12 +316,12 @@ function deleteQuestion(quizId, questionId) {
                 //alert('Question deleted successfully!');
                 showQuestions(quizId);
             } else {
-                alert('Failed to delete question');
+                alert('Failed to delete question', 'error');
             }
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('Error deleting question');
+            alert('Error deleting question', 'error');
         });
     }
 }

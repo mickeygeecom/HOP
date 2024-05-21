@@ -18,7 +18,7 @@ export async function joinQuiz() {
         await showQuizDetails(quizId);
     } catch (error) {
         console.error('Error joining quiz:', error.message);
-        alert('Failed to join quiz. Did you type the right join code?');
+        alert('Failed to join quiz. Did you type the right join code?', 'error');
     }
 }
 

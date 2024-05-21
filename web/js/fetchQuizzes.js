@@ -10,6 +10,6 @@ export async function fetchQuizzes() {
         })
         .catch(error => {
             console.error('Error fetching quizzes:', error);
-            alert('Failed to fetch quizzes');
+            alert('Failed to fetch quizzes', 'error');
         });
 }
