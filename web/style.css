@@ -34,7 +34,7 @@
     padding: 0.5rem;
     /* border: 2px solid #40be7063; */
     color: white;
-    background-color: #1e633be1;
+    background-color: #1e905d;
     border-radius: 0.5rem;
 }
 
@@ -49,18 +49,15 @@
 
 #joinCodeInput {
     padding: 0.5rem;
-    color: #000000;
-    background-color: #40be7048;
+    color: #ffffff;
+    background-color: #1a3127;
     border-radius: 0.5rem;
 }
 
-#joinCodeInput hover {
-    border: 2px solid #40be7063;
-}
 
 #joinQuizButton {
     padding: 0.5rem;
     color: #000000;
-    background-color: #40be7063;
+    background-color: #2bd187;
     border-radius: 0.5rem;
 }

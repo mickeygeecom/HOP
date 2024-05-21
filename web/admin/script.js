@@ -71,7 +71,7 @@ function editQuiz(quizId) {
     const newName = prompt('Enter new name for the quiz:');
     const newDescription = prompt('Enter new description for the quiz:');
     if (!newName || !newDescription) {
-        alert('Name and description are required', 'error');
+        alert('⚠️ Name and description are required', 'error');
         return;
     }
     fetch(`/api/admin/quizzes/${quizId}`, {
@@ -83,6 +83,7 @@ function editQuiz(quizId) {
     })
     .then(response => {
         if (response.ok) {
+            alert('Quiz updated successfully');
             listQuizzes();
         } else {
             alert('Failed to update quiz', 'error');
