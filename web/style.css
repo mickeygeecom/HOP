@@ -10,9 +10,13 @@
     cursor: pointer;
     border: 2px solid #40be7063;
     color: #1e6b3c;
-    background-color: #cacaca73;
+    background-color: #bcf5d233;
     border-radius: 0.5rem;
     cursor: pointer;
+}
+
+.option-group label:hover {
+    background-color: #bcf5d2;
 }
   
 .option-group input[type="radio"] {
@@ -25,6 +29,20 @@
     right: 0px;
 }
 
+#quizList div {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    /* border: 2px solid #40be7063; */
+    color: white;
+    background-color: #1e633be1;
+    border-radius: 0.5rem;
+}
+
+#quizList div:hover {
+    background-color: #3abd71;
+    cursor: pointer;
+}
+
 #quizForm {
     font-weight: bold;
 }
@@ -32,10 +50,17 @@
 #joinCodeInput {
     padding: 0.5rem;
     color: #000000;
-    background-color: #40be7013;
+    background-color: #40be7048;
+    border-radius: 0.5rem;
 }
+
+#joinCodeInput hover {
+    border: 2px solid #40be7063;
+}
+
 #joinQuizButton {
     padding: 0.5rem;
     color: #000000;
     background-color: #40be7063;
+    border-radius: 0.5rem;
 }
