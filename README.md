@@ -8,9 +8,9 @@ See TODO.md for plans ahead for the project.
 
 ## Prerequisites
 - Golang installed (I used version 1.22)
-- MariaDB/SQL database installed
+- MariaDB/MySQL database installed
 - Setup database structure from `"migrations"` folder
-- Adjust .env file for SQL credentials and HTTP(S) ports
+- Adjust `.env` file for SQL credentials and HTTP(S) ports
 
 ## How do I run it?
 - `cd` to `\cmd\server\` directory
