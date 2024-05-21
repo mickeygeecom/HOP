@@ -64,7 +64,7 @@ async function displayQuizDetails(quizId) {
         const quizTitle = document.getElementById('quizTitle');
         const quizDescription = document.getElementById('quizDescription');
         quizTitle.textContent = quiz.name;
-        quizDescription.innerHTML = `🧑‍💻 Join code: <span id="joinCode">${quiz.join_code}</span> <button onclick="navigator.clipboard.writeText('${quiz.join_code}')"> 📋</button><br>ℹ️ <i>${quiz.description}</i>`;
+        quizDescription.innerHTML = `🧑‍💻 Join code: <span id="joinCode">${quiz.join_code}</span> <button onclick="navigator.clipboard.writeText('${quiz.join_code}');alert('📋 Join code copied to your clipboard')"> 📋</button><br>ℹ️ <i>${quiz.description}</i>`;
 
         // Clear existing form elements
         const quizForm = document.getElementById('quizForm');
