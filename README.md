@@ -3,7 +3,7 @@
 # Cool, what is it?
 Showcasing creating a quiz system using Golang serving REST API endpoints and static frontend content such as HTML, CSS and VanillaJS.
 The system consists of an administration frontend interface and a user frontend interface.
-Each quiz has an unique quiz code, which enables participants to join a quick quickly.
+Each quiz has an unique quiz code, which enables participants to join a quiz quickly.
 See TODO.md for plans ahead for the project.
 
 ## Prerequisites
