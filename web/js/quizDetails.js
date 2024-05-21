@@ -55,6 +55,11 @@ function extractQuizIdFromUrl() {
 // Function to display quiz details using the given quiz ID
 async function displayQuizDetails(quizId) {
     try {
+        // Hide the username form
+        var userForm = document.getElementById("userForm");
+        if (userForm != undefined) {
+            userForm.style.display = "none";
+        }
         // Reset the answers array when displaying quiz details
         answers = [];
         const quiz = await fetchQuizDetails(quizId);

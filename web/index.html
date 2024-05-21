@@ -58,15 +58,26 @@
                 <!-- Quiz items will be dynamically added here -->
             </section>
         </nav>
+
         <section id="quizDetails" class="w-3/4 p-8">
-            <h2 id="quizTitle" class="text-2xl font-semibold mb-4">Welcome to the LootLocker Quiz App</h2>
-            <p id="quizDescription" class="mb-8">🧠 Select a quiz on the left side to get started - or use a Join Code to join a specific quiz</p>
+            <div id="userGreeting" class="mb-4">
+                <h2 id="quizTitle" class="text-2xl font-semibold mb-4">👋 Welcome to the LootLocker Quiz App</h2>
+                <form id="userForm" class="space-y-4">
+                    <label for="usernameInput" class="mb-2">Please enter your name, so you can brag with your results later:</label>
+                    <input type="text" id="usernameInput" class="border border-gray-300 rounded px-4 py-2 w-full" placeholder="Your name">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">I swear, this is my actual name</button>
+                </form>
+            </div>
+            
+            <h2 id="quizTitle" class="text-2xl font-semibold mb-4">🧠 Get started</h2>
+            <p id="quizDescription" class="mb-8">Select a quiz on the left side to get started - or use a Join Code to join a specific quiz</p>
             <form id="quizForm" class="space-y-4">
                 <!-- Quiz questions will be dynamically added here -->
             </form>
             <div id="score" class="text-xl font-semibold mt-4"></div> <!-- Score display section -->
         </section>
     </main>
+
     <footer>
     </footer>
 
