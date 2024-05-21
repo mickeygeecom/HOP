@@ -20,6 +20,6 @@ export async function displayScore(quizId, quizQuestions, answers) {
 
     // Display the score on the page
     const scoreElement = document.createElement('p');
-    scoreElement.textContent = `Your score is ${score}/${answers.length}.`;
+    scoreElement.innerHTML = `Score percentage: <u>${Math.floor(score / answers.length * 100)}%</u><br>You answered <u>${score}</u> questions right, out of <u>${answers.length}</u> total.`;
     quizForm.appendChild(scoreElement);
 }
