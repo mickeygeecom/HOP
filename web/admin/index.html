@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
-<body class="bg-gray-100 p-5">
+<body class="bg-gray-100 p-4">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
         function showToast(message, type) {
@@ -32,67 +32,72 @@
             showToast(message, type);
         };
     </script>
-    <div align="right" >
-        <nav class="text-xs font-bold object-right"><a href="/"><img src="/images/frontend.png">Frontend</a></nav>
-    </div>
-    <a href="/admin/"><img src="/images/lootlocker_logo.png" class="mx-auto" alt="Quiz App Logo" style="display: block; margin-left: auto; margin-right: auto; width: 16%;"></a>
-    <h1 class="text-xl font-bold text-center mb-4">Quiz Management System</h1>
+    <header class="flex justify-between items-center mb-4">
+        <a href="/admin/" class="flex items-center">
+            <img src="/images/lootlocker_logo.png" class="h-12" alt="Quiz App Logo">
+        </a>
+        <nav class="text-xs font-bold">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="/images/frontend.png" class="h-8"> 
+                <span>Frontend</span>
+            </a>
+        </nav>
+    </header>
+    <h1 class="text-2xl font-bold text-center mb-4">Quiz Management System</h1>
     
-    <div class="flex">
+    <div class="flex flex-col lg:flex-row">
         <!-- Sidebar for Navigation -->
-        <div class="w-1/6 bg-white shadow-md h-screen">
-            <ul class="space-y-2 text-xl">
+        <div class="lg:w-1/6 bg-white shadow-md h-full lg:h-screen p-4 mb-4 lg:mb-0 rounded">
+            <ul class="space-y-2 text-lg">
                 <li><button onclick="window.location='/admin'" class="block w-full text-left p-3 hover:bg-gray-200">Quizzes</button></li>
             </ul>
         </div>
 
         <!-- Main Content Area -->
-        <div class="flex-1 p-5">
+        <div class="flex-1 p-4 bg-white rounded shadow">
             <div id="quizSection">
-                <h2 class="text-lg font-semibold">Create New Quiz</h2>
-                <form id="createQuizForm" class="mb-4">
-                    <input type="text" id="quizName" placeholder="Enter quiz name" required class="p-2 border border-gray-500 rounded">
-                    <input type="text" id="quizDescription" placeholder="Enter quiz description" required class="p-2 border border-gray-500 rounded">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Quiz</button>
+                <h2 class="text-lg font-semibold mb-4">Create New Quiz</h2>
+                <form id="createQuizForm" class="mb-4 space-y-4">
+                    <input type="text" id="quizName" placeholder="Enter quiz name" required class="p-2 border border-gray-300 rounded w-full">
+                    <input type="text" id="quizDescription" placeholder="Enter quiz description" required class="p-2 border border-gray-300 rounded w-full">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Create Quiz</button>
                 </form>
                 <div>
-                    <h2 class="text-lg font-semibold">List of Quizzes</h2>
-                    <button onclick="listQuizzes()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Refresh List</button>
-                    <ul id="quizList" class="list-disc pl-5 mt-3"></ul>
+                    <h2 class="text-lg font-semibold mb-4">List of Quizzes</h2>
+                    <button onclick="listQuizzes()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4">Refresh List</button>
+                    <ul id="quizList" class="list-disc pl-5 space-y-2"></ul>
                 </div>
             </div>
 
             <div id="questionSection" style="display: none;">
-                <button onclick="goBackToQuizList()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to Quizzes</button>
-                <h2 class="text-lg font-semibold mt-4">Questions</h2>
-                <form id="createQuestionForm" class="mb-4">
+                <button onclick="goBackToQuizList()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Back to Quizzes</button>
+                <h2 class="text-lg font-semibold mb-4">Questions</h2>
+                <form id="createQuestionForm" class="mb-4 space-y-4">
                     <input type="hidden" id="quizId" name="quizId">
-                    Question
-                    <input type="text" id="questionText" placeholder="Enter the question here" required class="p-2 border border-gray-500 rounded question-input">
+                    <label for="questionText" class="block mb-2">Question</label>
+                    <input type="text" id="questionText" placeholder="Enter the question here" required class="p-2 border border-gray-300 rounded w-full question-input">
 
-                    <div style="display: flex; flex-direction: column; gap: 3px;">
+                    <div class="space-y-3">
                         <div>
-                            Option 1:
-                            <input type="text" id="option1" placeholder="Answer A" required class="p-2 border border-gray-500 rounded">
+                            <label for="option1" class="block mb-1">Option 1:</label>
+                            <input type="text" id="option1" placeholder="Answer A" required class="p-2 border border-gray-300 rounded w-full">
                         </div>
                         <div>
-                            Option 2:
-                            <input type="text" id="option2" placeholder="Answer B" required class="p-2 border border-gray-500 rounded">
+                            <label for="option2" class="block mb-1">Option 2:</label>
+                            <input type="text" id="option2" placeholder="Answer B" required class="p-2 border border-gray-300 rounded w-full">
                         </div>
                         <div>
-                            Option 3:
-                            <input type="text" id="option3" placeholder="Answer C" required class="p-2 border border-gray-500 rounded">
+                            <label for="option3" class="block mb-1">Option 3:</label>
+                            <input type="text" id="option3" placeholder="Answer C" required class="p-2 border border-gray-300 rounded w-full">
                         </div>
                         <div>
-                            Option 4:
-                            <input type="text" id="option4" placeholder="Answer D" required class="p-2 border border-gray-500 rounded">
+                            <label for="option4" class="block mb-1">Option 4:</label>
+                            <input type="text" id="option4" placeholder="Answer D" required class="p-2 border border-gray-300 rounded w-full">
                         </div>
                     </div>
                     
-                    
-                    
-                    Please select which option is correct:
-                    <div style="display: flex; gap: 10px;">
+                    <label class="block mb-2 mt-4">Please select which option is correct:</label>
+                    <div class="space-y-2">
                         <label class="block">
                             <input type="radio" name="correctOption" value="1" required> Option 1
                         </label>
@@ -107,14 +112,18 @@
                         </label>
                     </div>
                     
-                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Question</button>
+                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">Add Question</button>
                 </form>
-                <h2 class="text-lg font-semibold">Questionlist</h2>
-                <ul id="questionList" class="list-disc pl-5 mt-3"></ul>
+                <h2 class="text-lg font-semibold mb-4">Question List</h2>
+                <ul id="questionList" class="list-disc pl-5 space-y-2"></ul>
             </div>
             
         </div>
     </div>
+
+    <footer class="p-4 text-center">
+        <p class="text-sm text-gray-500">Prototype developed by <a href="https://mickeygee.com" target="_blank">Mickey Gee</a><br/>Sourcecode available on <a target="_blank" href="https://github.com/mickeygeecom/HOP">GitHub</a><br/>&copy; 2024 LootLocker. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

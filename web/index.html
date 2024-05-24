@@ -33,42 +33,41 @@
             showToast(message, type);
         };
     </script>
-    <header>
-        <div align="right" style="margin-top: 1em; margin-right: 1em;">
-            <nav class="text-xs font-bold object-right"><a href="/admin/"><img src="/images/lock.png">Admin</a></nav>
-        </div>
-            <a href="/"><img src="/images/lootlocker_logo.png" class="mx-auto" alt="Quiz App Logo" style="display: block; margin-left: auto; margin-right: auto; width: 16%;"></a>
-            <h1 class="text-xl font-bold text-center">Quiz App</h1>
-        <!-- Navmenu can go here -->
+    <header class="p-4 flex justify-between items-center">
+        <a href="/" class="flex items-center">
+            <img src="/images/lootlocker_logo.png" class="h-12" alt="Quiz App Logo">
+        </a>
+        <nav class="text-xs font-bold">
+            <a href="/admin/" class="flex items-center space-x-2">
+                <img src="/images/lock.png" class="h-8"> 
+                <span>Admin</span>
+            </a>
+        </nav>
     </header>
-    <main class="flex">
-        <nav class="w-1/4 h-screen overflow-y-auto p-4">
-
+    <h1 class="text-2xl font-bold text-center">Quiz App</h1>
+    <main class="flex flex-col lg:flex-row p-4">
+        <nav class="lg:w-1/4 lg:h-screen overflow-y-auto p-4 mb-4 lg:mb-0 bg-white rounded shadow">
             <section id="joinCode" class="mb-4">
                 <h2 class="text-xl text-center font-semibold mb-4">Quick Join</h2>
-                <p>Enter the Join Code provided by your host</p>
-                <input type="text" id="joinCodeInput" placeholder="6 digits">
-                <button id="joinQuizButton">Join Quiz</button>
+                <p class="mb-2">Enter the Join Code provided by your host</p>
+                <input type="text" id="joinCodeInput" class="border border-gray-300 rounded px-4 py-2 w-full mb-2" placeholder="6 digits">
+                <button id="joinQuizButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded w-full">Join Quiz</button>
             </section>
-
             <hr class="my-4">
-
             <h2 class="text-xl text-center font-semibold mb-4">Available Quizzes</h2>
             <section id="quizList" class="space-y-4">
                 <!-- Quiz items will be dynamically added here -->
             </section>
         </nav>
-
-        <section id="quizDetails" class="w-3/4 p-8">
+        <section id="quizDetails" class="lg:w-3/4 p-4 bg-white rounded shadow">
             <div id="userGreeting" class="mb-4">
                 <h2 id="quizTitle" class="text-2xl font-semibold mb-4">👋 Welcome to the LootLocker Quiz App</h2>
                 <form id="userForm" class="space-y-4">
-                    <label for="usernameInput" class="mb-2">Please enter your name, so you can brag with your results later:</label>
+                    <label for="usernameInput" class="block mb-2">Please enter your name, so you can brag with your results later:</label>
                     <input type="text" id="usernameInput" class="border border-gray-300 rounded px-4 py-2 w-full" placeholder="Your name">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">I swear, this is my actual name</button>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded w-full">I swear, this is my actual name</button>
                 </form>
             </div>
-            
             <h2 id="quizTitle" class="text-2xl font-semibold mb-4"></h2>
             <p id="quizDescription" class="mb-8"><b class="text-2xl">🧠 Get started</b><br/>Select a quiz on the left side to get started - or use a Join Code to join a specific quiz</p>
             <form id="quizForm" class="space-y-4">
@@ -77,10 +76,9 @@
             <div id="score" class="text-xl font-semibold mt-4"></div> <!-- Score display section -->
         </section>
     </main>
-
-    <footer>
+    <footer class="p-4 text-center">
+        <p class="text-sm text-gray-500">Prototype developed by <a target="_blank" href="https://mickeygee.com" target="_blank">Mickey Gee</a><br/>Sourcecode available on <a href="https://github.com/mickeygeecom/HOP">GitHub</a><br/>&copy; 2024 LootLocker. All rights reserved.</p>
     </footer>
-
     <script type="module" src="js/fetchQuizzes.js"></script>
     <script type="module" src="js/displayQuizzes.js"></script>
     <script type="module" src="js/quizDetails.js"></script>
