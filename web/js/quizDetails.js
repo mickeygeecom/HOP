@@ -163,6 +163,9 @@ async function displayQuizDetails(quizId) {
             // Display the first question
             displayNextQuestion();
 
+            // Scroll if on mobile
+            quizTitle.scrollIntoView({ behavior: 'smooth' });
+
         } else {
             alert('No questions are present for this quiz. It might be new?', 'error');
             return;
