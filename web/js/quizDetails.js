@@ -65,18 +65,19 @@ async function displayQuizDetails(quizId) {
         const quiz = await fetchQuizDetails(quizId);
         console.log('Quiz details:', quiz);
 
+        const quizQuestions = await fetchQuizQuestions(quizId);
+        console.log('Quiz questions:', quizQuestions); // Log the value of quizQuestions
+
         // Update quiz details section with quiz title and description
         const quizTitle = document.getElementById('quizTitle');
         const quizDescription = document.getElementById('quizDescription');
+        const quizQuestionAmount = quizQuestions?.length ?? 0
         quizTitle.textContent = quiz.name;
-        quizDescription.innerHTML = `🧑‍💻 <b>Join code:</b> <span id="joinCode">${quiz.join_code}</span> <button onclick="navigator.clipboard.writeText('${quiz.join_code}');alert('📋 Join code copied to your clipboard')"> 📋</button><br>ℹ️ <b>Quiz description:</b><br><i>${quiz.description}</i>`;
+        quizDescription.innerHTML = `<b>Total questions:</b> ${quizQuestionAmount}<br/>ℹ️ <b>Quiz description:</b><br><i>${quiz.description}</i><br/>🧑‍💻 <b>Join code:</b> <span id="joinCode">${quiz.join_code}</span> <button onclick="navigator.clipboard.writeText('${quiz.join_code}');alert('📋 Join code copied to your clipboard')"> 📋</button><br>`;
 
         // Clear existing form elements
         const quizForm = document.getElementById('quizForm');
         quizForm.innerHTML = '';
-
-        const quizQuestions = await fetchQuizQuestions(quizId);
-        console.log('Quiz questions:', quizQuestions); // Log the value of quizQuestions
 
         if (quizQuestions !== null && quizQuestions.length > 0) {
             let currentQuestionIndex = 0; // Index of the current question being displayed
@@ -128,7 +129,36 @@ async function displayQuizDetails(quizId) {
 
                 // Append the option group to the form
                 quizForm.appendChild(optionGroup);
+
+                // Create or update the progress display
+                let progressDisplay = document.getElementById('progressDisplay');
+                if (!progressDisplay) {
+                    progressDisplay = document.createElement('div');
+                    progressDisplay.id = 'progressDisplay';
+                    progressDisplay.classList.add('mt-8', 'text-center', 'font-semibold');
+                    quizForm.appendChild(progressDisplay);
+                }
+
+                // Create or update the progress bar
+                let progressBar = document.getElementById('progressBar');
+                if (!progressBar) {
+                    progressBar = document.createElement('div');
+                    progressBar.id = 'progressBar';
+                    progressBar.classList.add('w-full', 'bg-gray-200', 'rounded-full', 'h-2.5', 'mt-4');
+                    const progressFill = document.createElement('div');
+                    progressFill.id = 'progressFill';
+                    progressFill.classList.add('bg-blue-400', 'h-2.5', 'rounded-full');
+                    progressBar.appendChild(progressFill);
+                    quizForm.appendChild(progressBar);
+                }
+
+                const progressPercentage = ((currentQuestionIndex + 1) / quizQuestionAmount) * 100;
+                const progressFill = document.getElementById('progressFill');
+                progressFill.style.width = `${progressPercentage}%`;
+
+                progressDisplay.textContent = `Progress: ${currentQuestionIndex + 1} / ${quizQuestionAmount}`;
             };
+
 
             // Display the first question
             displayNextQuestion();
