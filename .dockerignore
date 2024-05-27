@@ -1,0 +1,7 @@
+# flyctl launch added from .gitignore
+**\.env
+
+# flyctl launch added from web\.gitignore
+web\**\node_modules
+web\**\ssl
+fly.toml
