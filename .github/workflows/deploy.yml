@@ -19,7 +19,9 @@ jobs:
           go-version: 1.18  # Use your Go version
 
       - name: Install flyctl
-        run: curl -L https://fly.io/install.sh | sh
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          sudo mv flyctl /usr/local/bin
 
       - name: Deploy to Fly.io
         env:
