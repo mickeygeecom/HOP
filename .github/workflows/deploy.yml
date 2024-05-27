@@ -16,12 +16,12 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.18  # Use your Go version
+          go-version: 1.22  # Use your Go version
 
       - name: Install flyctl
         run: |
           curl -L https://fly.io/install.sh | sh
-          sudo mv flyctl /usr/local/bin
+          echo 'export PATH=$HOME/.fly/bin:$PATH' >> $GITHUB_ENV
 
       - name: Deploy to Fly.io
         env:
