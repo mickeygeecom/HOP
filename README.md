@@ -6,9 +6,9 @@ The system consists of an administration frontend interface and a user frontend 
 Each quiz has an unique quiz code, which enables participants to join a quiz quickly.
 See TODO.md for plans ahead for the project.
 
-## Prerequisites
+## Pre-requisites
 - Golang installed (I used version 1.22)
-- MariaDB/MySQL database installed
+- MariaDB/MySQL database available
 - Setup database structure from `"migrations"` folder
 - Adjust `.env` file for SQL credentials and HTTP(S) ports
 
@@ -19,3 +19,4 @@ See TODO.md for plans ahead for the project.
 
 ## Fly.io CD
 [![Fly Deploy](https://github.com/mickeygeecom/HOP/actions/workflows/deploy.yml/badge.svg)](https://github.com/mickeygeecom/HOP/actions/workflows/deploy.yml)
+- Project is setup supporting Fly.io continous deployment, and secrets can be set with f.eg: `flyctl secrets set DB_USER=quiz` as an alternative to the `.env` file
