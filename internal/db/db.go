@@ -15,7 +15,7 @@ func InitDB() {
 	// Load environment variables from .env file
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 
 	// Get database credentials from environment variables
@@ -25,7 +25,7 @@ func InitDB() {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 
-	// Create DSN (Data Source Name) string
+	// Create a Data Source Name (DSN) for the database connection
 	dsn := username + ":" + password + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbname + "?parseTime=true"
 
 	// Open a connection to the database
