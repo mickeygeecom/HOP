@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for lootlocker-quiz on 2024-05-27T15:31:52+02:00
+# fly.toml app configuration file generated for lootlocker-quiz on 2024-05-27T15:57:27+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -7,14 +7,12 @@ app = 'lootlocker-quiz'
 primary_region = 'arn'
 
 [build]
-  [build.args]
-    GO_VERSION = '1.22.1'
 
 [env]
   PORT = '8080'
 
 [http_service]
-  internal_port = 8080
+  internal_port = 80
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
