@@ -48,7 +48,7 @@ function listQuizzes() {
             item.innerHTML = `
                 <span class="flex-1">[${quiz.id}] ${quiz.name} - ${quiz.description}</span>
                 <div class="flex justify-end items-center gap-2">
-                    <button onclick="showQuestions(${quiz.id})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Questions</button>
+                    <button onclick="showQuestions(${quiz.id})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Questions</button>
                     <button onclick="editQuiz(${quiz.id})" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded">Edit</button>
                     <button onclick="deleteQuiz(${quiz.id})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
                 </div>
