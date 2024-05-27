@@ -16,3 +16,6 @@ See TODO.md for plans ahead for the project.
 - `cd` to `\cmd\server\` directory
 - execute `go run main.go`
 - Go to https://localhost - if hosted locally
+
+## Fly.io CD
+[![Fly Deploy](https://github.com/mickeygeecom/HOP/actions/workflows/deploy.yml/badge.svg)](https://github.com/mickeygeecom/HOP/actions/workflows/deploy.yml)
