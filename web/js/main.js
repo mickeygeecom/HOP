@@ -3,6 +3,28 @@ import { fetchQuizzes } from './fetchQuizzes.js';
 // Call fetchQuizzes function when the page loads
 window.onload = fetchQuizzes;
 
+// Toast notification
+function showToast(message, type) {
+    let bgcolor = "linear-gradient(to right, #00b09b, #96c93d)"
+    if (type == 'error') {
+        bgcolor = "linear-gradient(to right, #ff6347, #ff7f50)"
+    }
+    Toastify({
+        text: message,
+        duration: 4000,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true,
+        style: {
+            background: bgcolor,
+          },
+    }).showToast();
+}
+
+// Replace default alert with custom toast notification
+window.alert = function(message, type) {
+    showToast(message, type);
+};
 
 // Username stuff
 document.addEventListener("DOMContentLoaded", function() {
