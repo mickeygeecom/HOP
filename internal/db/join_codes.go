@@ -25,7 +25,7 @@ func joinCodeExists(joinCode string) (bool, error) {
 	return count > 0, nil
 }
 
-// Function to generate a random join code with 6 characters, consisting of numbers and uppercase letters
+// GenerateJoinCode ... Function to generate a random join code with 6 characters, consisting of numbers and uppercase letters
 func GenerateJoinCode() string {
 	const (
 		charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" // Characters to choose from
@@ -47,7 +47,7 @@ func GenerateJoinCode() string {
 	return string(code)
 }
 
-// Function to update the join code for a single quiz
+// UpdateSingleQuizJoinCode ... Function to update the join code for a single quiz
 func UpdateSingleQuizJoinCode(quizID int) error {
 	// Generate a unique join code for the current quiz
 	newJoinCode := GenerateJoinCode()
@@ -62,7 +62,7 @@ func UpdateSingleQuizJoinCode(quizID int) error {
 	return nil
 }
 
-// Function to generate and update join codes for quizzes
+// UpdateQuizJoinCodes ... Function to generate and update join codes for quizzes
 func UpdateQuizJoinCodes() error {
 	// Query all quizzes from the database
 	rows, err := DB.Query("SELECT id, join_code FROM quiz")
@@ -104,7 +104,7 @@ func UpdateQuizJoinCodes() error {
 	return nil
 }
 
-// Function to retrieve the quiz ID from the join code
+// GetQuizIDFromJoinCode ... Function to retrieve the quiz ID from the join code
 func GetQuizIDFromJoinCode(joinCode string) (string, error) {
 	// Query the database to find the quiz ID based on the join code
 	var quizID string

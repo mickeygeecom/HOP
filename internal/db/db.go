@@ -5,12 +5,15 @@ import (
 	"log"
 	"os"
 
+	// Import the MySQL driver here, to isolate it from the rest of the application
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 )
 
+// DB ... global variable to hold the database connection
 var DB *sql.DB
 
+// InitDB ... initializes a connection to the database using the credentials
 func InitDB() {
 	// Load environment variables from .env file
 	err := godotenv.Load()
@@ -21,12 +24,12 @@ func InitDB() {
 	// Get database credentials from environment variables
 	username := os.Getenv("DB_USER")
 	password := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME")
+	dbName := os.Getenv("DB_NAME")
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 
 	// Create a Data Source Name (DSN) for the database connection
-	dsn := username + ":" + password + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbname + "?parseTime=true"
+	dsn := username + ":" + password + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName + "?parseTime=true"
 
 	// Open a connection to the database
 	DB, err = sql.Open("mysql", dsn)
