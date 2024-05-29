@@ -16,6 +16,8 @@ export async function joinQuiz() {
 
         // Call the showQuizDetails function with the retrieved quiz ID
         await showQuizDetails(quizId);
+
+        alert('Quiz found and joined', 'success')
     } catch (error) {
         console.error('Error joining quiz:', error.message);
         alert('Failed to join quiz. Did you type the right Join Code?', 'error');
