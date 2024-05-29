@@ -1,4 +1,5 @@
 #### This is a repo for my major final assignment for my Computer Science education
+Online demo can be found here: [https://lootlocker-quiz.fly.dev/](https://lootlocker-quiz.fly.dev/)
 
 # Cool, what is it?
 Showcasing creating a quiz system using Golang serving REST API endpoints and static frontend content such as HTML, CSS and VanillaJS.
