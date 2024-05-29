@@ -19,10 +19,6 @@ func SetupRouter() *mux.Router {
 	// Apply CORS to the main router to handle all incoming requests, needs to be on top of the sub-router
 	router.Use(enableCORS)
 
-	// Specific sub-router for API paths
-	apiRouter := router.PathPrefix("/").Subrouter()
-	apiRouter.Use(ContentTypeMiddleware)
-
 	// ## Admin endpoints ##
 	adminRouter := router.PathPrefix("/api/admin").Subrouter()
 	adminRouter.Use(ContentTypeMiddleware)
