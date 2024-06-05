@@ -18,6 +18,11 @@ See TODO.md for plans ahead for the project.
 - execute `go run main.go`
 - Go to https://localhost - if hosted locally
 
+## OpenAI Content generation
+- Requires OpenAI API key
+- You can use the argument 'generate' followed by a subject, f.eg:
+`go run .\cmd\server\ generate top40 music` - and the software will generate a quiz on that subject using OpenAI
+
 ## Fly.io CD
 [![Fly Deploy](https://github.com/mickeygeecom/HOP/actions/workflows/deploy.yml/badge.svg)](https://github.com/mickeygeecom/HOP/actions/workflows/deploy.yml)
 - Project is setup supporting Fly.io continous deployment, and secrets can be set with f.eg: `flyctl secrets set DB_USER=quiz` as an alternative to the `.env` file
