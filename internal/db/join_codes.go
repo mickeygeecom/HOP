@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
-	"time"
 )
 
 // Function to check if a join code already exists in the database
@@ -27,23 +26,11 @@ func joinCodeExists(joinCode string) (bool, error) {
 
 // GenerateJoinCode ... Function to generate a random join code with 6 characters, consisting of numbers and uppercase letters
 func GenerateJoinCode() string {
-	const (
-		charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" // Characters to choose from
-		length  = 6                                      // Length of the join code
-	)
-
-	// Seed the random number generator
-	rand.Seed(time.Now().UnixNano())
-
-	// Create a byte slice to store the characters of the join code
-	code := make([]byte, length)
-
-	// Iterate over the length of the join code and randomly select characters from the charset
-	for i := 0; i < length; i++ {
-		code[i] = charset[rand.Intn(len(charset))]
+	const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	code := make([]byte, 6)
+	for i := range code {
+		code[i] = letters[rand.Intn(len(letters))]
 	}
-
-	// Convert the byte slice to a string and return the join code
 	return string(code)
 }
 
